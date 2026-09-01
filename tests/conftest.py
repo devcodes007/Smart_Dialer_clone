@@ -8,7 +8,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session, sessionmaker
 
 from app.db.database import Base
-from app.db.model import AgentModel, BorrowerModel, CallModel, ReservationModel  # noqa: F401
+from app.db.model import AgentModel, BorrowerModel, CallModel, PendingEventModel, ReservationModel  # noqa: F401
 
 
 load_dotenv()
@@ -51,7 +51,7 @@ def _truncate_all(engine) -> None:
     with engine.begin() as connection:
         connection.execute(
             text(
-                "TRUNCATE TABLE reservations, calls, agents, borrowers "
+                "TRUNCATE TABLE pending_events, reservations, calls, agents, borrowers "
                 "RESTART IDENTITY CASCADE"
             )
         )

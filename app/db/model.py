@@ -99,3 +99,23 @@ class ReservationModel(Base):
         DateTime(timezone=True),
         nullable=False,
     )
+
+
+class PendingEventModel(Base):
+    __tablename__ = "pending_events"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True,
+        autoincrement=True,
+    )
+
+    call_id: Mapped[int] = mapped_column(
+        Integer,
+        nullable=False,
+    )
+
+    event: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+    )
